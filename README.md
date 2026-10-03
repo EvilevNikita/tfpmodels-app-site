@@ -1,0 +1,30 @@
+# TFP Models marketing site
+
+Published separately at https://tfpmodels.app using GitHub Pages, `main` / root.
+The existing https://www.tfpmodels.org publication remains separate.
+
+The root routes iPhone visitors to the existing App Store listing and Android
+visitors to `/android.html`. Desktop and unrecognized devices see the landing
+page. `/about.html` and `/?stay=1` bypass automatic routing.
+
+Android installation instructions and homepages share the ten-language content
+from [tfpmodels-site](https://github.com/EvilevNikita/tfpmodels-site).
+This repository contains generated deployable files. To update them, run in
+the source repository:
+
+```sh
+python3 scripts/generate_marketing_site.py --output ../tfpmodels-app-site
+node scripts/test_marketing_routing.cjs
+```
+
+Use the cloned checkout of this repository as the output directory, review its
+diff, then commit and push. Do not manually edit generated HTML or marketing.js.
+
+Porkbun DNS: apex ALIAS `evilevnikita.github.io`, www CNAME
+`evilevnikita.github.io`, TTL 600. The Pages custom domain is `tfpmodels.app`.
+Keep the .org DNS and repository custom domain unchanged.
+
+Marketing pages are noindex and retain .org homepage canonicals. Standard UTM
+parameters survive the Android route and internal links. GA4 only loads after
+consent, so fresh immediate iPhone redirects do not produce GA4 events and do
+not measure installation. Store URLs and support email remain unchanged.
