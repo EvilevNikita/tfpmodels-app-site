@@ -3,9 +3,13 @@
 Published separately at https://tfpmodels.app using GitHub Pages, `main` / root.
 The existing https://www.tfpmodels.org publication remains separate.
 
-The root routes iPhone visitors to the existing App Store listing and Android
+The root displays the download page before routing iPhone browsers to the existing App Store listing and Android
 visitors to `/android.html`. Desktop and unrecognized devices see the landing
-page. `/about.html` and `/?stay=1` bypass automatic routing.
+page. Embedded iPhone browsers (including Threads and Instagram) keep the
+information visible and use the App Store button instead of an automatic store
+handoff. App Store buttons open a separate browsing context on a user tap.
+Manual interaction cancels a pending automatic redirect.
+`/about.html` and `/?stay=1` bypass automatic routing.
 
 Android installation instructions and download pages use ten-language content
 from [tfpmodels-site](https://github.com/EvilevNikita/tfpmodels-site).
