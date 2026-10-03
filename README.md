@@ -3,10 +3,12 @@
 Published separately at https://tfpmodels.app using GitHub Pages, `main` / root.
 The existing https://www.tfpmodels.org publication remains separate.
 
-The download page stays visible on every device. For iPhone links directly to
-https://apps.apple.com/app/tfp-models/id6766621647; For Android links to the local
-installation guide. All links use ordinary HTTPS with no automatic routing,
-custom protocols, or external-browser handoff.
+The root paints the download page first, then attempts an ordinary HTTPS
+App Store redirect on iPhone or routes Android to the local installation guide.
+Manual interaction cancels the automatic redirect. Desktop, iPad, bots,
+translated pages, /about.html and ?stay=1 retain the page. Ordinary download
+buttons remain available when automatic navigation is blocked. No custom
+protocols or external-browser handoffs are used.
 
 Android installation instructions and download pages use ten-language content
 from [tfpmodels-site](https://github.com/EvilevNikita/tfpmodels-site).
@@ -15,6 +17,7 @@ the source repository:
 
 ```sh
 python3 scripts/generate_marketing_site.py --output ../tfpmodels-app-site
+node scripts/test_marketing_routing.cjs
 python3 scripts/test_marketing_seo.py
 ```
 
