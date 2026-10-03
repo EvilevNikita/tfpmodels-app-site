@@ -7,8 +7,8 @@ The root displays the download page before routing iPhone browsers to the existi
 visitors to `/android.html`. Desktop and unrecognized devices see the landing
 page. Embedded iPhone browsers (including Threads and Instagram) keep the
 information visible and use the App Store button instead of an automatic store
-handoff. On iPhone, buttons attempt a direct native store link synchronously on
-a user tap. A separate HTTPS link and Safari instructions remain available.
+handoff. On iPhone, buttons use a clickable x-safari-https link to reopen the root
+in Safari, which then attempts the ordinary App Store handoff. A separate HTTPS link and Safari instructions remain available.
 Manual interaction cancels a pending automatic redirect.
 `/about.html` and `/?stay=1` bypass automatic routing.
 

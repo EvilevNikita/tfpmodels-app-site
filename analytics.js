@@ -79,11 +79,11 @@
     if (!link) return;
     const url = new URL(link.href, location.href);
     let name;
-    if (url.hostname === 'apps.apple.com') name = 'iphone_download_click';
+    if (url.hostname === 'apps.apple.com' || link.matches('a[data-app-store]')) name = 'iphone_download_click';
     if (url.origin === location.origin && url.pathname === '/android.html') name = 'android_install_click';
     if (!name) return;
     window.gtag('event', name, {
-      link_url: url.origin + url.pathname,
+      link_url: link.matches('a[data-app-store]') ? 'https://apps.apple.com/app/tfp-models/id6766621647' : url.origin + url.pathname,
       link_placement: link.closest('.hero__downloads') ? 'header' : 'direct_links',
       transport_type: 'beacon'
     });
