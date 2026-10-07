@@ -4,13 +4,13 @@ Published separately at https://tfpmodels.app using GitHub Pages, `main` / root.
 The existing https://www.tfpmodels.org publication remains separate.
 
 All localized homepages paint the download page first, then attempts an ordinary HTTPS
-App Store redirect on iPhone or routes Android to the local installation guide.
+App Store redirect on iPhone or routes Android directly to Google Play.
 Manual interaction cancels the automatic redirect. Desktop, iPad, bots,
 /about.html and ?stay=1 retain the page. Ordinary download
 buttons remain available when automatic navigation is blocked. No custom
 protocols or external-browser handoffs are used.
 
-Android installation instructions and download pages use ten-language content
+Download pages use ten-language content
 from [tfpmodels-site](https://github.com/EvilevNikita/tfpmodels-site).
 This repository contains generated deployable files. To update them, run in
 the source repository:
