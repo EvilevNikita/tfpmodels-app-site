@@ -9,10 +9,234 @@
         "components": [
           {
             "/": "/",
-            "?": {
-              "creator": "?*"
-            },
-            "comment": "Open a shared creator profile; keep normal website visits in the browser."
+            "exclude": true
+          },
+          {
+            "/": "/*/*",
+            "exclude": true
+          },
+          {
+            "/": "/en",
+            "exclude": true
+          },
+          {
+            "/": "/ru",
+            "exclude": true
+          },
+          {
+            "/": "/de",
+            "exclude": true
+          },
+          {
+            "/": "/es",
+            "exclude": true
+          },
+          {
+            "/": "/fr",
+            "exclude": true
+          },
+          {
+            "/": "/it",
+            "exclude": true
+          },
+          {
+            "/": "/ja",
+            "exclude": true
+          },
+          {
+            "/": "/ko",
+            "exclude": true
+          },
+          {
+            "/": "/pl",
+            "exclude": true
+          },
+          {
+            "/": "/pt-br",
+            "exclude": true
+          },
+          {
+            "/": "/about",
+            "exclude": true
+          },
+          {
+            "/": "/android",
+            "exclude": true
+          },
+          {
+            "/": "/ios",
+            "exclude": true
+          },
+          {
+            "/": "/download",
+            "exclude": true
+          },
+          {
+            "/": "/install",
+            "exclude": true
+          },
+          {
+            "/": "/support",
+            "exclude": true
+          },
+          {
+            "/": "/privacy",
+            "exclude": true
+          },
+          {
+            "/": "/terms",
+            "exclude": true
+          },
+          {
+            "/": "/community-guidelines",
+            "exclude": true
+          },
+          {
+            "/": "/account",
+            "exclude": true
+          },
+          {
+            "/": "/delete-account",
+            "exclude": true
+          },
+          {
+            "/": "/auth",
+            "exclude": true
+          },
+          {
+            "/": "/login",
+            "exclude": true
+          },
+          {
+            "/": "/logout",
+            "exclude": true
+          },
+          {
+            "/": "/signup",
+            "exclude": true
+          },
+          {
+            "/": "/settings",
+            "exclude": true
+          },
+          {
+            "/": "/admin",
+            "exclude": true
+          },
+          {
+            "/": "/api",
+            "exclude": true
+          },
+          {
+            "/": "/assets",
+            "exclude": true
+          },
+          {
+            "/": "/static",
+            "exclude": true
+          },
+          {
+            "/": "/images",
+            "exclude": true
+          },
+          {
+            "/": "/css",
+            "exclude": true
+          },
+          {
+            "/": "/js",
+            "exclude": true
+          },
+          {
+            "/": "/fonts",
+            "exclude": true
+          },
+          {
+            "/": "/creator",
+            "exclude": true
+          },
+          {
+            "/": "/profile",
+            "exclude": true
+          },
+          {
+            "/": "/index.html",
+            "exclude": true
+          },
+          {
+            "/": "/about.html",
+            "exclude": true
+          },
+          {
+            "/": "/android.html",
+            "exclude": true
+          },
+          {
+            "/": "/privacy.html",
+            "exclude": true
+          },
+          {
+            "/": "/support.html",
+            "exclude": true
+          },
+          {
+            "/": "/community-guidelines.html",
+            "exclude": true
+          },
+          {
+            "/": "/robots.txt",
+            "exclude": true
+          },
+          {
+            "/": "/sitemap.xml",
+            "exclude": true
+          },
+          {
+            "/": "/favicon.png",
+            "exclude": true
+          },
+          {
+            "/": "/apple-touch-icon.png",
+            "exclude": true
+          },
+          {
+            "/": "/marketing.js",
+            "exclude": true
+          },
+          {
+            "/": "/languages.js",
+            "exclude": true
+          },
+          {
+            "/": "/styles.css",
+            "exclude": true
+          },
+          {
+            "/": "/analytics.js",
+            "exclude": true
+          },
+          {
+            "/": "/analytics.css",
+            "exclude": true
+          },
+          {
+            "/": "/android.js",
+            "exclude": true
+          },
+          {
+            "/": "/android.css",
+            "exclude": true
+          },
+          {
+            "/": "/.well-known",
+            "exclude": true
+          },
+          {
+            "/": "/?*"
+          },
+          {
+            "/": "*",
+            "exclude": true
           }
         ]
       }

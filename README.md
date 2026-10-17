@@ -7,13 +7,12 @@ All localized homepages paint the download page first, then attempts an ordinary
 App Store redirect on iPhone or routes Android directly to Google Play.
 Manual interaction cancels the automatic redirect. Desktop, iPad, bots,
 /about.html and ?stay=1 retain the page. Ordinary download
-buttons remain available when automatic navigation is blocked. Ordinary visits use no custom protocols. Valid ?creator= links keep the download page
+buttons remain available when automatic navigation is blocked. Ordinary visits use no custom protocols. Valid /publicShareID links keep the download page
 visible and add a user-initiated profile button using the existing cocreatix scheme.
 Install links stay available; no deferred deep link after installation is promised.
 
 iOS DEV and PROD Universal Links use `.well-known/apple-app-site-association`,
-generated from `content/apple-app-site-association.json`. Only root URLs with a
-nonempty creator query match. Both apps need the applinks:tfpmodels.app entitlement
+generated from `content/apple-app-site-association.json`. Only single-segment profile paths match; reserved service paths are excluded. Both apps need the applinks:tfpmodels.app entitlement
 and an updated provisioning profile/build. Apple CDN caching and user browser
 preferences affect when the association becomes available.
 
@@ -22,9 +21,8 @@ from `content/android-assetlinks.json`. Public certificate fingerprints were rea
 from Play Console (all app-signing SHA-256 certificates) and Gradle signingReport
 on 2026-10-17. DEV debug/release, public PROD Play/local release and private local
 PROD are supported. No private signing keys are published.
-Android 15+ dynamic rules restrict opening to root URLs with a creator query.
-Older Android versions match the root path, so the plain homepage can also open
-the app; other site paths remain web pages. If multiple variants are installed,
+Android 15+ dynamic rules exclude reserved paths and match profile paths.
+Older Android versions match all paths; the client rejects reserved paths without opening a profile. If multiple variants are installed,
 Android/user link preferences determine which one opens. A new app build is required.
 
 Download pages use ten-language content

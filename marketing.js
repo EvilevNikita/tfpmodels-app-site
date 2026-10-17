@@ -3,8 +3,9 @@
   const hosts = ['tfpmodels.app', 'www.tfpmodels.app', 'localhost', '127.0.0.1'];
   if (!hosts.includes(location.hostname)) return;
   const params = new URLSearchParams(location.search);
-  const creatorValues = params.getAll('creator');
-  const creator = creatorValues.length === 1 && /^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$/.test(creatorValues[0]) ? creatorValues[0] : null;
+  const reservedPaths = ["en", "ru", "de", "es", "fr", "it", "ja", "ko", "pl", "pt-br", "about", "android", "ios", "download", "install", "support", "privacy", "terms", "community-guidelines", "account", "delete-account", "auth", "login", "logout", "signup", "settings", "admin", "api", "assets", "static", "images", "css", "js", "fonts", "creator", "profile", "index.html", "about.html", "android.html", "privacy.html", "support.html", "community-guidelines.html", "robots.txt", "sitemap.xml", "favicon.png", "apple-touch-icon.png", "marketing.js", "languages.js", "styles.css", "analytics.js", "analytics.css", "android.js", "android.css", ".well-known"];
+  const pathID = location.pathname.slice(1);
+  const creator = /^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$/.test(pathID) && !reservedPaths.includes(pathID.toLowerCase()) ? pathID : null;
   const campaignKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id'];
   const supported = ['en', 'de', 'es', 'fr', 'it', 'ja', 'ko', 'pl', 'pt-BR', 'ru'];
   const pathLanguage = supported.find(code => {
@@ -13,7 +14,7 @@
   });
   const ua = navigator.userAgent || '';
   const preview = /bot|crawler|spider|facebookexternalhit|Facebot|Twitterbot|LinkedInBot|WhatsApp|TelegramBot/i.test(ua);
-  const entry = location.pathname === '/' || location.pathname === '/index.html' || Boolean(pathLanguage);
+  const entry = Boolean(creator) || location.pathname === '/' || location.pathname === '/index.html' || Boolean(pathLanguage);
   const iphone = /iPhone|iPod/i.test(ua);
   let destination;
   if (entry && !creator && params.get('stay') !== '1' && !preview) {
@@ -34,7 +35,8 @@
         if (params.has(key)) url.searchParams.set(key, params.get(key));
       }
       if (creator && supported.some(code => url.pathname === '/' + code.toLowerCase() + '/') || creator && url.pathname === '/') {
-        url.searchParams.set('creator', creator);
+        url.pathname = '/' + creator;
+        url.searchParams.set('lang', supported.find(code => '/' + code.toLowerCase() + '/' === new URL(link.href, location.href).pathname) || 'en');
       }
       link.href = url.href;
     }
@@ -48,7 +50,7 @@
       };
       const link = document.createElement('a');
       link.className = 'button button--download';
-      link.textContent = labels[pathLanguage || 'en'];
+      link.textContent = labels[supported.includes(params.get('lang')) ? params.get('lang') : pathLanguage || 'en'];
       link.href = 'cocreatix://creator/' + encodeURIComponent(creator);
       link.id = 'open-shared-profile';
       document.querySelector('.hero__downloads')?.prepend(link);
