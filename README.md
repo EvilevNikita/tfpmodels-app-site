@@ -7,8 +7,19 @@ All localized homepages paint the download page first, then attempts an ordinary
 App Store redirect on iPhone or routes Android directly to Google Play.
 Manual interaction cancels the automatic redirect. Desktop, iPad, bots,
 /about.html and ?stay=1 retain the page. Ordinary download
-buttons remain available when automatic navigation is blocked. No custom
-protocols or external-browser handoffs are used.
+buttons remain available when automatic navigation is blocked. Ordinary visits use no custom protocols. Valid ?creator= links keep the download page
+visible and add a user-initiated profile button using the existing cocreatix scheme.
+Install links stay available; no deferred deep link after installation is promised.
+
+Android App Links are verified through `.well-known/assetlinks.json`, generated
+from `content/android-assetlinks.json`. Public certificate fingerprints were read
+from Play Console (all app-signing SHA-256 certificates) and Gradle signingReport
+on 2026-10-17. DEV debug/release, public PROD Play/local release and private local
+PROD are supported. No private signing keys are published.
+Android 15+ dynamic rules restrict opening to root URLs with a creator query.
+Older Android versions match the root path, so the plain homepage can also open
+the app; other site paths remain web pages. If multiple variants are installed,
+Android/user link preferences determine which one opens. A new app build is required.
 
 Download pages use ten-language content
 from [tfpmodels-site](https://github.com/EvilevNikita/tfpmodels-site).

@@ -3,6 +3,8 @@
   const hosts = ['tfpmodels.app', 'www.tfpmodels.app', 'localhost', '127.0.0.1'];
   if (!hosts.includes(location.hostname)) return;
   const params = new URLSearchParams(location.search);
+  const creatorValues = params.getAll('creator');
+  const creator = creatorValues.length === 1 && /^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$/.test(creatorValues[0]) ? creatorValues[0] : null;
   const campaignKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id'];
   const supported = ['en', 'de', 'es', 'fr', 'it', 'ja', 'ko', 'pl', 'pt-BR', 'ru'];
   const pathLanguage = supported.find(code => {
@@ -14,7 +16,7 @@
   const entry = location.pathname === '/' || location.pathname === '/index.html' || Boolean(pathLanguage);
   const iphone = /iPhone|iPod/i.test(ua);
   let destination;
-  if (entry && params.get('stay') !== '1' && !preview) {
+  if (entry && !creator && params.get('stay') !== '1' && !preview) {
     if (iphone) {
       destination = 'https://apps.apple.com/app/tfp-models/id6766621647';
     } else if (/Android/i.test(ua) || navigator.userAgentData?.platform === 'Android') {
@@ -31,7 +33,25 @@
       for (const key of campaignKeys) {
         if (params.has(key)) url.searchParams.set(key, params.get(key));
       }
+      if (creator && supported.some(code => url.pathname === '/' + code.toLowerCase() + '/') || creator && url.pathname === '/') {
+        url.searchParams.set('creator', creator);
+      }
       link.href = url.href;
+    }
+    if (entry && creator && !preview) {
+      const labels = {
+        en: 'Open profile in the app', ru: 'Открыть профиль в приложении',
+        de: 'Profil in der App öffnen', es: 'Abrir perfil en la app',
+        fr: 'Ouvrir le profil dans l’application', it: 'Apri il profilo nell’app',
+        ja: 'アプリでプロフィールを開く', ko: '앱에서 프로필 열기',
+        pl: 'Otwórz profil w aplikacji', 'pt-BR': 'Abrir perfil no aplicativo'
+      };
+      const link = document.createElement('a');
+      link.className = 'button button--download';
+      link.textContent = labels[pathLanguage || 'en'];
+      link.href = 'cocreatix://creator/' + encodeURIComponent(creator);
+      link.id = 'open-shared-profile';
+      document.querySelector('.hero__downloads')?.prepend(link);
     }
     if (!destination) return;
     let interacted = false;
