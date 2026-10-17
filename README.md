@@ -11,6 +11,12 @@ buttons remain available when automatic navigation is blocked. Ordinary visits u
 visible and add a user-initiated profile button using the existing cocreatix scheme.
 Install links stay available; no deferred deep link after installation is promised.
 
+iOS DEV and PROD Universal Links use `.well-known/apple-app-site-association`,
+generated from `content/apple-app-site-association.json`. Only root URLs with a
+nonempty creator query match. Both apps need the applinks:tfpmodels.app entitlement
+and an updated provisioning profile/build. Apple CDN caching and user browser
+preferences affect when the association becomes available.
+
 Android App Links are verified through `.well-known/assetlinks.json`, generated
 from `content/android-assetlinks.json`. Public certificate fingerprints were read
 from Play Console (all app-signing SHA-256 certificates) and Gradle signingReport

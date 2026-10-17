@@ -1,0 +1,21 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "8PG8VQ77GK.com.ivlev.tfp-models.prod",
+          "8PG8VQ77GK.com.ivlev.tfp-models.dev"
+        ],
+        "components": [
+          {
+            "/": "/",
+            "?": {
+              "creator": "?*"
+            },
+            "comment": "Open a shared creator profile; keep normal website visits in the browser."
+          }
+        ]
+      }
+    ]
+  }
+}
