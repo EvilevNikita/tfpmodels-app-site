@@ -7,12 +7,12 @@ All localized homepages paint the download page first, then attempts an ordinary
 App Store redirect on iPhone or routes Android directly to Google Play.
 Manual interaction cancels the automatic redirect. Desktop, iPad, bots,
 /about.html and ?stay=1 retain the page. Ordinary download
-buttons remain available when automatic navigation is blocked. Ordinary visits use no custom protocols. Valid /publicShareID links keep the download page
+buttons remain available when automatic navigation is blocked. Ordinary visits use no custom protocols. Valid /@publicShareID links (and legacy /publicShareID links) keep the download page
 visible and add a user-initiated profile button using the existing cocreatix scheme.
 Install links stay available; no deferred deep link after installation is promised.
 
 iOS DEV and PROD Universal Links use `.well-known/apple-app-site-association`,
-generated from `content/apple-app-site-association.json`. Only single-segment profile paths match; reserved service paths are excluded. Both apps need the applinks:tfpmodels.app entitlement
+generated from `content/apple-app-site-association.json`. Only single-segment profile paths match; reserved service paths are excluded for legacy unprefixed links. Profiles under /@ are independent of service names. Both apps need the applinks:tfpmodels.app entitlement
 and an updated provisioning profile/build. Apple CDN caching and user browser
 preferences affect when the association becomes available.
 

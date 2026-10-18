@@ -4,8 +4,9 @@
   if (!hosts.includes(location.hostname)) return;
   const params = new URLSearchParams(location.search);
   const reservedPaths = ["en", "ru", "de", "es", "fr", "it", "ja", "ko", "pl", "pt-br", "about", "android", "ios", "download", "install", "support", "privacy", "terms", "community-guidelines", "account", "delete-account", "auth", "login", "logout", "signup", "settings", "admin", "api", "assets", "static", "images", "css", "js", "fonts", "creator", "profile", "index.html", "about.html", "android.html", "privacy.html", "support.html", "community-guidelines.html", "robots.txt", "sitemap.xml", "favicon.png", "apple-touch-icon.png", "marketing.js", "languages.js", "styles.css", "analytics.js", "analytics.css", "android.js", "android.css", ".well-known"];
-  const pathID = location.pathname.slice(1);
-  const creator = /^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$/.test(pathID) && !reservedPaths.includes(pathID.toLowerCase()) ? pathID : null;
+  const atProfile = location.pathname.startsWith('/@');
+  const pathID = location.pathname.slice(atProfile ? 2 : 1);
+  const creator = /^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$/.test(pathID) && (atProfile || !reservedPaths.includes(pathID.toLowerCase())) ? pathID : null;
   const campaignKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id'];
   const supported = ['en', 'de', 'es', 'fr', 'it', 'ja', 'ko', 'pl', 'pt-BR', 'ru'];
   const pathLanguage = supported.find(code => {
@@ -35,7 +36,7 @@
         if (params.has(key)) url.searchParams.set(key, params.get(key));
       }
       if (creator && supported.some(code => url.pathname === '/' + code.toLowerCase() + '/') || creator && url.pathname === '/') {
-        url.pathname = '/' + creator;
+        url.pathname = '/@' + creator;
         url.searchParams.set('lang', supported.find(code => '/' + code.toLowerCase() + '/' === new URL(link.href, location.href).pathname) || 'en');
       }
       link.href = url.href;

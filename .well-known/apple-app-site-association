@@ -16,6 +16,9 @@
             "exclude": true
           },
           {
+            "/": "/@?*"
+          },
+          {
             "/": "/en",
             "exclude": true
           },
